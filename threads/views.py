@@ -20,8 +20,8 @@ def delete(req, id=None):
     post.delete()
     return HttpResponseRedirect(reverse('index'))
 
-def reply(req, id=None):
+def abc(req, id=None):
     posts = Post.objects.all()
     form = PostForm()
     context = {'posts': posts, 'form': form, "id": id}
-    return render(req, 'threads/index.html', context)
+    return render(req, 'threads/abc.html', context)
