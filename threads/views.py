@@ -3,6 +3,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.urls import reverse
 from .models import Post
 from .forms import PostForm
+from .forms import AbcForm
 
 def index(req):
     posts = Post.objects.all()
@@ -15,6 +16,12 @@ def add(req):
     form.save(commit=True)
     return HttpResponseRedirect(reverse('index'))
 
+def add_quot(req, id=None):
+    # print(req.POST)
+    form = AbcForm(req.POST, initial = {'quote':id})
+    form.save(commit=True)
+    return HttpResponseRedirect(reverse('index'))
+
 def delete(req, id=None):
     post = get_object_or_404(Post, pk=id)
     post.delete()
@@ -22,6 +29,7 @@ def delete(req, id=None):
 
 def abc(req, id=None):
     posts = Post.objects.all()
-    form = PostForm()
+    form = AbcForm()
+    # form = PostForm()
     context = {'posts': posts, 'form': form, "id": id}
     return render(req, 'threads/abc.html', context)

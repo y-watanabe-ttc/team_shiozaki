@@ -17,7 +17,7 @@
         <div class="container">
             <h2>お試し掲示板</h2>
             <!-- ToDoアプリ Post処理 -->
-            <form action="{% url 'add' %}" method="post">
+            <form action="{% url 'add_quot' id %}" method="post">
                 {% csrf_token %}
                 <div class="text">
                     ハンドルネーム　{{ form.name }}
@@ -28,6 +28,7 @@
                     <div>
                         -->{{id}}
                     </div>
+                    {{form.quote.as_hidden}}
                 {% endif %}
                 <!-- ToDo追加ボタン -->
                 <div class="form-group">

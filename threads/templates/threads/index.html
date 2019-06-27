@@ -41,7 +41,9 @@
                             <td>
                                 <div>{{ post.id }}：{{ post.name }}：{{ post.created_date }}</div>
                                 <div class="message">{{ post.message }}</div>
-
+                                {% if post.quote != None %}
+                                    {{post.quote}}
+                                {% endif %}
                             </td>
                             <td>
                                 <form action="{% url 'abc' post.id %}" method="get">
